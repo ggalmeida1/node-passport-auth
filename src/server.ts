@@ -1,4 +1,5 @@
 import express, { Request, Response, ErrorRequestHandler } from 'express';
+import passport from 'passport';
 import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -12,6 +13,8 @@ server.use(cors());
 
 server.use(express.static(path.join(__dirname, '../public')));
 server.use(express.urlencoded({ extended: true }));
+
+server.use(passport.initialize())
 
 server.get('/ping', (req: Request, res: Response) => res.json({ pong: true }));
 
